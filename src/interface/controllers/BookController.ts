@@ -2,15 +2,22 @@ import { Request, Response } from "express";
 import { validate } from "class-validator";
 import { CreateBookDto } from "../dto/CreateBookDto";
 import { DIContainer } from "../../infrastructure/DIContainer";
+import { GetAllBooks } from "src/use-cases/GetAllBooks";
 
 export class BookController {
-  private getAllBooks = DIContainer.getGetAllBooksUseCase();
 
-  async getAll(req: Request, res: Response) {
-    const books = await this.getAllBooks.execute();
-    res.json(books);
-  }
-  
+    constructor(private getAllBooks: GetAllBooks) {}
+    
+
+  async getAll(req: Request, res: Response): Promise<void> {
+    try {
+        const books = await this.getAllBooks.execute();
+        res.status(200).json(books);
+    } catch (error) {
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+
   async create(req: Request, res: Response) {
     const dto = Object.assign(new CreateBookDto(), req.body);
     const errors = await validate(dto);
