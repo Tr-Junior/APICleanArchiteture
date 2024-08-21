@@ -10,6 +10,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "apicleanarchiteture": "file:"
+    "apicleanarchiteture": "file:",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.4.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.5.4"
   }
 }
