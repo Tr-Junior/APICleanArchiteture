@@ -38,7 +38,7 @@
 
 import express from "express";
 import mongoose from "mongoose";
-import { bookRoutes } from "./interface/routes/BookRoutes";
+import { bookRoutes } from "./interface/routes/bookRoutes";
 
 const app = express();
 const port = 3000;
