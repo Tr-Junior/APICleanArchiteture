@@ -36,18 +36,19 @@
 // app.use('/index', indexRoute);
 // export default app;
 
-
 import express from "express";
-import { bookRoutes } from "./interface/routes/bookRoutes";
-import { errorHandler } from "./interface/middleware/errorHandler";
+import mongoose from "mongoose";
+import { bookRoutes } from "./interface/routes/BookRoutes";
 
 const app = express();
+const port = 3000;
 
 app.use(express.json());
-app.use("/api", bookRoutes);
-app.use(errorHandler);
+app.use(bookRoutes);
 
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+mongoose.connect("mongodb+srv://7xnecrox7:7KLJOUxGndpSLGrv@gerenciamento.nanpogn.mongodb.net/?retryWrites=true&w=majority&appName=gerenciamento", {
+}).then(() => {
+  app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+  });
+}).catch(err => console.log(err));
