@@ -1,15 +1,12 @@
-// src/interface/routes/bookRoutes.ts
 import { Router } from "express";
-import { InMemoryBookRepository } from "../../infrastructure/repositories/InMemoryBookRepository";
-import { GetAllBooks } from "../../use-cases/GetAllBooks";
 import { BookController } from "../controllers/BookController";
 
 const router = Router();
-
-const bookRepository = new InMemoryBookRepository();
-const getAllBooks = new GetAllBooks(bookRepository);
-const bookController = new BookController(getAllBooks);
+const bookController = new BookController();
 
 router.get("/books", (req, res) => bookController.getAll(req, res));
+router.post("/books", (req, res) => bookController.create(req, res));
+router.put("/books/:id", (req, res) => bookController.update(req, res));
+router.delete("/books/:id", (req, res) => bookController.delete(req, res));
 
 export { router as bookRoutes };
