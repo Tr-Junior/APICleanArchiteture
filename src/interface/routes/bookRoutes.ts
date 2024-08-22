@@ -1,8 +1,7 @@
+// src/interface/routes/bookRoutes.ts
 import { Router } from "express";
 import { InMemoryBookRepository } from "../../infrastructure/repositories/InMemoryBookRepository";
-import { GetAllBooks }
-
- from "../../use-cases/GetAllBooks";
+import { GetAllBooks } from "../../use-cases/GetAllBooks";
 import { BookController } from "../controllers/BookController";
 
 const router = Router();
