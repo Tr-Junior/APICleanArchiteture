@@ -1,12 +1,16 @@
-import { IsString, IsDate } from "class-validator";
+// src/dto/CreateBookDto.ts
+import { IsString, IsNotEmpty, IsNumber, IsDateString } from 'class-validator';
 
 export class CreateBookDto {
   @IsString()
-  title!: string;
+    @IsNotEmpty()
+    title!: string;
 
   @IsString()
-  author!: string;
+    @IsNotEmpty()
+    author!: string;
 
-  @IsDate()
-  publishedDate!: Date;
+@IsDateString()
+    @IsNotEmpty()
+    publishedDate!: number;
 }
